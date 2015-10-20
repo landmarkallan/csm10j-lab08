@@ -1,0 +1,16 @@
+1. If I haven't done anything wrong, then:
+
+no, it fails to compile, being unable to apply the parametered constructor of 'MotorVehicle' to the subclass 'Car'.
+
+I believe the problem is that since there's no constructor for the sub class 'Car' telling Java to construct the 'Car Class' Object with the string parameter constructor of the 'MotorVehicle', thus it only does the automatic construction of the default (null~empty~no parameter) constructor. Thus you've got a 'Car Class' Object that is suppose to be able to take in a string parameter to finish up its construction, due to inheritting the MotorVehicle class, but has no such instructing constructor for it to do so. The partially constructed 'Car Class' Object is missing its other part of construction, that would give it the ability to take in a string to change its inherited 'name' instance variable~member of the MotorVehicle Class. Err, the below is hopefully less confusing than this above attempt at explaining it.
+
+step 1: 'Program Class' -> instantiates the 'Car Class' Object, 'car'
+
+step 2: 'Car Class' constructs the 'car' Object with the default constructor of the MotorVehicle super Class. The 'car' Object isn't built to take in any parameters for its construction.
+
+step 3: ERROR, due to a mismatch between the 'Program Class' Object instantiation sending the 'Car Class' a string parameter for usage in its construction, but the 'Car Class' has only constructed the 'car' Object to be able to take in null parameters; it's *UN*able to take in parameters. Logical Impossibility: "you MUST take~use this string parameter, but you CAN'T take~use this string parameter", similar to the same question in physics: "Unstopable force vs immovable force).
+
+
+2. it fails again with the same actual vs formal parameter mismatch error. The 'Car Class' is still calling upon the default constructor of the 'MotorVehicle', while trying to pass~apply~use a parameter for the construction. Yes, now the 'Car Class' constructor is accepting the parameter sent to it from 'Program Class' instantiation, it is still sending that parameter into the default constructor of the 'MotorVehicle', which is why the parameter mismatch error remains.
+
+3. By adding the 'super(name)' line to the 'Car Class' constructor, we are now finally telling it to use the parametered constructor of the 'MotorVehicle' Class, and now no mismatch, and it works fine now.
